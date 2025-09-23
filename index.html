@@ -2,10 +2,30 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+
+    <!-- Favicon and Icons -->
     <link rel="icon" type="image/x-icon" href="/dmc-dashboard/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>HR Dashboard</title>
-    <meta name="description" content="Comprehensive HR analytics and employee management dashboard" />
+    <link rel="icon" type="image/svg+xml" href="/dmc-dashboard/favicon.svg" />
+    <link rel="apple-touch-icon" href="/dmc-dashboard/icon-192.png" />
+
+    <!-- Viewport and Mobile Optimization -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="HR Dashboard" />
+    <meta name="application-name" content="HR Dashboard" />
+    <meta name="msapplication-TileColor" content="#1890ff" />
+    <meta name="theme-color" content="#1890ff" />
+
+    <!-- SEO and App Info -->
+    <title>HR Dashboard - Al-Riyadah</title>
+    <meta name="description" content="Comprehensive HR management dashboard for employee analytics, turnover analysis, and workforce insights" />
+    <meta name="keywords" content="HR, dashboard, analytics, employee management, turnover analysis, workforce insights" />
+    <meta name="author" content="Al-Riyadah" />
+
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="/dmc-dashboard/manifest.json" />
     
     <!-- Preconnect to external domains -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -33,10 +53,39 @@
         }
       }(window.location))
     </script>
-    <script type="module" crossorigin src="/dmc-dashboard/assets/main-DiH7FVwH.js"></script>
-    <link rel="stylesheet" crossorigin href="/dmc-dashboard/assets/main-BEEkkVZW.css">
-  </head>
+    <script type="module" crossorigin src="/dmc-dashboard/assets/main-DsEgN2zx.js"></script>
+    <link rel="stylesheet" crossorigin href="/dmc-dashboard/assets/main-BCovQ1dF.css">
+  <link rel="manifest" href="/dmc-dashboard/manifest.webmanifest"><script id="vite-plugin-pwa:register-sw" src="/dmc-dashboard/registerSW.js"></script></head>
   <body>
     <div id="root"></div>
+
+    <!-- Service Worker Registration -->
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js')
+            .then((registration) => {
+              console.log('SW registered: ', registration);
+
+              // Check for updates
+              registration.addEventListener('updatefound', () => {
+                const newWorker = registration.installing;
+                newWorker.addEventListener('statechange', () => {
+                  if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                    // New content is available, show update notification
+                    if (confirm('New version available! Click OK to update.')) {
+                      window.location.reload();
+                    }
+                  }
+                });
+              });
+            })
+            .catch((registrationError) => {
+              console.log('SW registration failed: ', registrationError);
+            });
+        });
+      }
+    </script>
+
   </body>
 </html>
