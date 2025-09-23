@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <!-- Favicon and Icons -->
+    <link rel="icon" type="image/x-icon" href="/dmc-dashboard/favicon.ico" />
+    <link rel="icon" type="image/svg+xml" href="/dmc-dashboard/favicon.svg" />
+    <link rel="apple-touch-icon" href="/dmc-dashboard/icon-192.png" />
+
+    <!-- Viewport and Mobile Optimization -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="HR Dashboard" />
+    <meta name="application-name" content="HR Dashboard" />
+    <meta name="msapplication-TileColor" content="#1890ff" />
+    <meta name="theme-color" content="#1890ff" />
+
+    <!-- SEO and App Info -->
+    <title>HR Dashboard - Al-Riyadah</title>
+    <meta name="description" content="Comprehensive HR management dashboard for employee analytics, turnover analysis, and workforce insights" />
+    <meta name="keywords" content="HR, dashboard, analytics, employee management, turnover analysis, workforce insights" />
+    <meta name="author" content="Al-Riyadah" />
+
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="/dmc-dashboard/manifest.json" />
+    
+    <!-- Preconnect to external domains -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+      rel="stylesheet"
+    />
+    
+    <!-- GitHub Pages SPA redirect script -->
+    <script type="text/javascript">
+      // Single Page Apps for GitHub Pages
+      // MIT License
+      // https://github.com/rafgraph/spa-github-pages
+      (function(l) {
+        if (l.search[1] === '/' ) {
+          var decoded = l.search.slice(1).split('&').map(function(s) { 
+            return s.replace(/~and~/g, '&')
+          }).join('?');
+          window.history.replaceState(null, null,
+              l.pathname.slice(0, -1) + decoded + l.hash
+          );
+        }
+      }(window.location))
+    </script>
+    <script type="module" crossorigin src="/dmc-dashboard/assets/main-DsEgN2zx.js"></script>
+    <link rel="stylesheet" crossorigin href="/dmc-dashboard/assets/main-BCovQ1dF.css">
+  <link rel="manifest" href="/dmc-dashboard/manifest.webmanifest"><script id="vite-plugin-pwa:register-sw" src="/dmc-dashboard/registerSW.js"></script></head>
+  <body>
+    <div id="root"></div>
+
+    <!-- Service Worker Registration -->
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js')
+            .then((registration) => {
+              console.log('SW registered: ', registration);
+
+              // Check for updates
+              registration.addEventListener('updatefound', () => {
+                const newWorker = registration.installing;
+                newWorker.addEventListener('statechange', () => {
+                  if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                    // New content is available, show update notification
+                    if (confirm('New version available! Click OK to update.')) {
+                      window.location.reload();
+                    }
+                  }
+                });
+              });
+            })
+            .catch((registrationError) => {
+              console.log('SW registration failed: ', registrationError);
+            });
+        });
+      }
+    </script>
+
+  </body>
+</html>
